@@ -22,9 +22,8 @@ exports.tokenVerify = (req, res, next) => {
 		// verify the token is valid or not
 		const tokenValid = jwt.verify(token, JWTSECRET);
 
-		if (tokenValid) {
-			next();
-		}
+		req.user = { id: tokenValid.id };
+		next();
 	} catch (error) {
 		if (error.name === "TokenExpiredError") {
 			return res.status(401).json({
