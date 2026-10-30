@@ -5,7 +5,8 @@ const jwt = require("jsonwebtoken");
 // internal module import
 const User = require("../db/models/userSchema");
 
-const JWTSECRET = "d345abjxka$#%^bkasdho*&TgkjgJVfy54yustao8";
+// secret code to generate token
+const JWTSECRET = process.env.JWT_SECRET;
 
 // logIn controller
 exports.login = async (req, res) => {
@@ -41,7 +42,7 @@ exports.login = async (req, res) => {
 
 		// generate a new token
 		const token = await jwt.sign({ id: user._id }, JWTSECRET, {
-			expiresIn: "1d", // to exprire token in 1day.
+			expiresIn: "20s", // to exprire token in 1day.
 		});
 
 		return res.status(200).json({
