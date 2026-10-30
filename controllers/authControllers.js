@@ -8,7 +8,7 @@ const User = require("../db/models/userSchema");
 const JWTSECRET = "d345abjxka$#%^bkasdho*&TgkjgJVfy54yustao8";
 
 // logIn controller
-const login = async (req, res) => {
+exports.login = async (req, res) => {
 	try {
 		// collect the userName,password from request
 		const { userName, password } = req.body;
@@ -57,7 +57,7 @@ const login = async (req, res) => {
 };
 
 // signUp controller
-const signUp = async (req, res) => {
+exports.signUp = async (req, res) => {
 	try {
 		// collect userName,email,password from request.
 		const { userName, email, password } = req.body;
