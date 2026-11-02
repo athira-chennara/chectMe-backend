@@ -42,7 +42,7 @@ exports.login = async (req, res) => {
 
 		// generate a new token
 		const token = await jwt.sign({ id: user._id }, JWTSECRET, {
-			expiresIn: "20s", // to exprire token in 1day.
+			expiresIn: "1d", // to exprire token in 1day.
 		});
 
 		return res.status(200).json({

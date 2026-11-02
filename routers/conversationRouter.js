@@ -3,7 +3,10 @@ const express = require("express");
 
 // internal imports
 const { tokenVerify } = require("../middleware/authMiddleware");
-const { createConversation } = require("../controllers/conversationController");
+const {
+	createConversation,
+	getAllConversations,
+} = require("../controllers/conversationController");
 
 const conversationRouter = express.Router();
 
@@ -12,5 +15,6 @@ conversationRouter.post(
 	tokenVerify,
 	createConversation,
 );
+conversationRouter.get("/all-conversation", tokenVerify, getAllConversations);
 
 module.exports = conversationRouter;

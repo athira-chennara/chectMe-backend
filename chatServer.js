@@ -5,6 +5,7 @@ const cors = require("cors");
 const express = require("express");
 const authRouter = require("./routers/authRouter");
 const userRouter = require("./routers/userRouter");
+const conversationRouter = require("./routers/conversationRouter");
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
+app.use("/api/conversation", conversationRouter);
 
 app.listen(3000, () => {
 	console.log("App is running @ http://localhost:3000/");
