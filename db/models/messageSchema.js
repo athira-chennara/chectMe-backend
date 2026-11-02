@@ -22,7 +22,7 @@ const messageSchema = mongoose.Schema(
 	{ timestamps: true },
 );
 
-// to fetch and sort messages more easly we define index.
+// to fetch and sort messages more easy if we define index.
 messageSchema.index({ conversation: 1, createdAt: 1 });
 
 const Message = mongoose.model("Message", messageSchema);

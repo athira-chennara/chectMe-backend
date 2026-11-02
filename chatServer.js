@@ -6,6 +6,7 @@ const express = require("express");
 const authRouter = require("./routers/authRouter");
 const userRouter = require("./routers/userRouter");
 const conversationRouter = require("./routers/conversationRouter");
+const messageRouter = require("./routers/messageRouter");
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(express.json());
 
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
+app.use("/api/message", messageRouter);
 app.use("/api/conversation", conversationRouter);
 
 app.listen(3000, () => {

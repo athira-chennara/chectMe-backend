@@ -93,3 +93,23 @@ exports.getAllConversations = async (req, res) => {
 			.json({ error: true, message: "Internal Server Error." });
 	}
 };
+
+// update the conversation controller.
+exports.updateConversationById = async (req, res) => {
+	try {
+		// collect data from request.
+		const { id } = req.user;
+		const { recipient, lastMessage } = req.body;
+
+		const data = await Conversation.findByIdAndUpdate(
+			{ participants: [id, recipient] },
+			lastMessage,
+			{ new: true },
+		);
+		console.log("data -> ", data);
+	} catch (error) {
+		return res
+			.status(500)
+			.json({ error: true, message: "Internal Server Error." });
+	}
+};
