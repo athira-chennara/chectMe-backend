@@ -47,7 +47,7 @@ exports.createConversation = async (req, res) => {
 			});
 		}
 
-		// if new create new conversation.
+		// if conversation not create new conversation.
 		const newData = await Conversation.create({
 			participants: [id, recipient],
 		});
@@ -81,32 +81,13 @@ exports.getAllConversations = async (req, res) => {
 			participants: id,
 		})
 			.populate("participants", "userName email")
+			.populate("lastMessage", "message")
 			.sort({ updatedAt: -1 }); // to get the data in descending order.
 		return res.status(200).json({
 			success: true,
 			count: conversations,
 			conversations: conversations,
 		});
-	} catch (error) {
-		return res
-			.status(500)
-			.json({ error: true, message: "Internal Server Error." });
-	}
-};
-
-// update the conversation controller.
-exports.updateConversationById = async (req, res) => {
-	try {
-		// collect data from request.
-		const { id } = req.user;
-		const { recipient, lastMessage } = req.body;
-
-		const data = await Conversation.findByIdAndUpdate(
-			{ participants: [id, recipient] },
-			lastMessage,
-			{ new: true },
-		);
-		console.log("data -> ", data);
 	} catch (error) {
 		return res
 			.status(500)
