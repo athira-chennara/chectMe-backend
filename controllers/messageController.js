@@ -3,7 +3,7 @@ const Message = require("../db/models/messageSchema");
 const Conversation = require("../db/models/conversationSchema");
 const User = require("../db/models/userSchema");
 
-// create nre message.
+// create new message.
 exports.createMessage = async (req, res) => {
 	try {
 		// collect data from request.
